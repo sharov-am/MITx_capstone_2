@@ -139,7 +139,7 @@ $y^{(i)}(\theta \cdot x^{(i)})>0$ if label and classified result match. This lea
 
 \subsection{Margin Boundary}
 
-The Margin Boundary is the set of points  $x$  which satisfy $\theta \cdot x + \theta _0= \pm 1$. So, the signed distance from the decision boundary to the margin boundary is $\displaystyle \frac{1}{\mid \mid \theta \mid \mid }$.
+The Margin Boundary is the set of points  $x$  which satisfy $\theta \cdot x + \theta _0= \pm 1$. So, the distance (with signed direction) from the decision boundary to the margin boundary is $\displaystyle \frac{1}{\mid \mid \theta \mid \mid }$.
 
 $\frac{y^{(i)}(\theta \cdot x^{(i)} + \theta _0)}{\mid \mid \theta \mid \mid }=\frac{1}{\mid \mid \theta \mid \mid }.$
 
@@ -167,9 +167,11 @@ J(\theta , \theta _0) = \frac{1}{n} \sum _{i=1}^{n} \text {Loss}_ h (z) + \frac{
 
 Where $\lambda > 0$ is called the regularization parameter that regulates how important the margin boundaries are in comparison to the average hinge loss.
 
+\textbf{Cost:} is an averaged loss.
+
 \subsection{Gradient Descent}
 
-Assume $\theta \in \mathbb{R}$ the goal is to find $\theta $that minimizes $J(\theta , \theta _0) = \frac{1}{n} \sum _{i=1}^{n} \text {Loss}_ h (y^{(i)} (\theta \cdot x^{(i)} + \theta _0 )) + \frac{\lambda }{2} \mid \mid \theta \mid \mid ^2$ through gradient descent.\\
+Assume $\theta \in \mathbb{R}$ the goal is to find $\theta$ that minimizes $J(\theta , \theta _0) = \frac{1}{n} \sum _{i=1}^{n} \text {Loss}_ h (y^{(i)} (\theta \cdot x^{(i)} + \theta _0 )) + \frac{\lambda }{2} \mid \mid \theta \mid \mid ^2$ through gradient descent.\\
 
 In other words, we will
 \begin{itemize}

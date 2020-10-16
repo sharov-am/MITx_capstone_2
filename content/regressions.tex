@@ -51,6 +51,20 @@ Nudge gradient in the opposite direction to find (local) minima.
 
 Where $\eta$ is the learning rate (steps) and the learning rate gets smaller the closer you get $\eta_k = \frac{1}{1+k}$ 
 
+
+\subsection{Source of mistakes:}
+\begin{enumerate}
+	\item \textbf{structural mistakes} Maybe the linear function is not sufficient for you to model
+your training data. Maybe the mapping between your training vectors and y’s is
+actually highly nonlinear. Instead of just considering linear mappings, you should
+consider a much broader set of function. This is one class of mistakes. 
+	\item \textbf{estimation mistakes} The mapping itself is indeed linear, but we don’t have
+enough training data to estimate the parameters correctly.
+\end{enumerate}
+
+
+
+
 \subsection{Ridge Regression}
 Regularization is trying to push away from perfect fit.
 
@@ -63,10 +77,22 @@ J_{n, \lambda } (\theta , \theta _0) &= \frac{1}{n} \sum _{t=1}^{n} \frac{(y^{(t
 \item initialize $\theta=0$
 \item randomly pick $t=\{1,\cdots,n\}$
 \item $\theta = \theta + \eta\lambda \theta - (y^{(t)}-\theta x^{(t)})x^{(t)} = (1-\eta \lambda)\theta + \eta(y^{(t)}-\theta \cdot x^{(t)})$
-\end{itemize}
+\end{itemize} 
+
+
+\subsection{The closed form approach with regularisation}
+Or Tikhonov regularisation:\\
+$\theta = (X^T X + \lambda I)^{-1} X^T Y$
+
+
 
 \subsection{Kernels}
 
+Kernels is a measure of proximity. We transform data into higher dimensions and easily classify
+them there(use SVM for example). Idea that we build new features from existing one within higher dimensions.
+New coordinates should be linearly independent.\\
+
+Given $x=(x_1, x_2)$ and $x^\prime =(x_1^\prime , x_2^\prime )$
 \begin{align*}
 \displaystyle  \phi (x) \displaystyle &= \big [x_1, \, x_2,\,  {x_1}^2,\,  \sqrt{2}x_1x_2,\,  {x_2}^2 \big ]\\
 \displaystyle \phi (x') \displaystyle &= \big [x_1^\prime ,\,  x_2^\prime ,\,  {x_1^\prime }^2,\,  \sqrt{2}x_1^\prime x_2^\prime ,\,  {x_2^\prime }^2 \big ]\\
@@ -74,6 +100,8 @@ J_{n, \lambda } (\theta , \theta _0) &= \frac{1}{n} \sum _{t=1}^{n} \frac{(y^{(t
 &=\displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)^2\\
 &=\displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)^2
 \end{align*}
+
+
 
 \subsection{Kernel Perceptron}
 
@@ -99,7 +127,15 @@ Where $\alpha_j$ represents the number of classification mistakes the perceptron
 	\end{enumerate}
 \end{enumerate}
 
+\subsection{Polynomial kernel}
+$(a \cdot b+r)^d$ -- where $r$ is shift and $d$ is new dimension. $r$ and $d$ parameters which
+could be determined from cross-validation.
+
 \subsection{Radial basis Kernel}
 \begin{align*}
-K(x,x') = e^{-\frac{1}{2} {||x-x'||}^2}
+K(x,x') = e^{-\gamma {||x-x'||}^2}
 \end{align*}
+
+RBF founds SVM(?) classificator in infinite dimension space. 
+$\gamma$ is tuned parameter searched in cross-validation.
+$\gamma$ -- scale squred distance, scale influence.
