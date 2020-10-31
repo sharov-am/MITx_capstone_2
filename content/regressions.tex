@@ -92,13 +92,17 @@ Kernels is a measure of proximity. We transform data into higher dimensions and 
 them there(use SVM for example). Idea that we build new features from existing one within higher dimensions.
 New coordinates should be linearly independent.\\
 
-Given $x=(x_1, x_2)$ and $x^\prime =(x_1^\prime , x_2^\prime )$
+\textbf{Example}:\\
+Given $x=(x_1, x_2)$ and $x^\prime =(x_1^\prime , x_2^\prime )$\\
+$K(x, x^\prime ; \phi) = \phi(x) \cdot \phi( x^\prime)$ \
+
 \begin{align*}
+\text where \\
 \displaystyle  \phi (x) \displaystyle &= \big [x_1, \, x_2,\,  {x_1}^2,\,  \sqrt{2}x_1x_2,\,  {x_2}^2 \big ]\\
 \displaystyle \phi (x') \displaystyle &= \big [x_1^\prime ,\,  x_2^\prime ,\,  {x_1^\prime }^2,\,  \sqrt{2}x_1^\prime x_2^\prime ,\,  {x_2^\prime }^2 \big ]\\
 \displaystyle  \phi (x) \cdot \phi (x^\prime )&=\displaystyle {x_1}{x_1^\prime } + {x_2}{x_2^\prime } + {x_1x_1^\prime }^2 + 2{x_1}{x_1^\prime }{x_2}{x_2^\prime } + {x_2x_2^\prime }^2\\
 &=\displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)^2\\
-&=\displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)^2
+&=\displaystyle \left({x}{x^\prime }\right)+ \left({x}{x^\prime }\right)^2
 \end{align*}
 
 
@@ -112,24 +116,27 @@ The parameter vector of a preceptron algorithm can also be written as:
 
 Where $\alpha_j$ represents the number of classification mistakes the perceptron algo made. Every time a missclassification happens the parameter vector is updated with the product of the label and the feature vector $\theta  = \theta + y^{(i)} x^{(i)}$. The goal of the Kernel Perceptron algo is to find the vector $\alpha$ with the counts of the missclassifications.
 
-\textbf{Kernel Perceptron}$\displaystyle \left(\big \{ (x^{(i)}, y^{(i)}), i=1,...,n, T \big \} \right)$
+\textbf{Kernel Perceptron}
+
+$\displaystyle \left(\big \{ (x^{(i)}, y^{(i)}), i=1,...,n, T \big \} \right)$
 \begin{enumerate}[\indent {}]
-	\item initialize  $\alpha _1, \alpha _2, ..., \alpha _ n;$ to some values
+	\item initialize  $\alpha _1, \alpha _2, ..., \alpha _ n;$ to 0
 	\begin{enumerate}[\indent {}]
 		\item for $t=1,\cdots,T$ do
 		\begin{enumerate}[\indent {}]
 			\item for $i=1,\cdots,n$ do
 			\begin{enumerate}[\indent {}]
 				\item if $y^{(i)}\sum _{j=1}^{n} \alpha _ j y^{(j)} K(x^{j},x^{i}) \leq 0$ then
-				\item update $\alpha _ i = \alpha _ i +1 y^{(i)}$
+				\item update $\alpha _ i = \alpha _ i + y^{(i)}$
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
 \end{enumerate}
 
 \subsection{Polynomial kernel}
-$(a \cdot b+r)^d$ -- where $r$ is shift and $d$ is new dimension. $r$ and $d$ parameters which
-could be determined from cross-validation.
+$(a \cdot b+r)^d$ -- where $r$ is shift and $d$ is new dimension 
+(or order of polynomial transformation $\phi$). $r$ and $d$ parameters which
+could be determined from cross-validation. 
 
 \subsection{Radial basis Kernel}
 \begin{align*}

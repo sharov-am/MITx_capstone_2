@@ -1,10 +1,11 @@
+\newcommand{\quotes}[1]{``#1''}
 \section{Recommender Systems}
 
 \subsection{K nearest neighbors}
 
-The  $K$-Nearest Neighbor method makes use of ratings by  $K$  other “similar" users when predicting  Yai .
+The  $K$-Nearest Neighbor method makes use of ratings by  $K$  other \quotes{similar} users when predicting  $Y_{ai}$ .
 
-Let  $KNN(a)$  be the set of  K  users “similar to" user  $a$ , and let $sim(a,b)$ be a similarity measure between users  $a$  and  $b \in KNN(a)$. The  K -Nearest Neighbor method predicts a ranking  Yai  to be :
+Let  $KNN(a)$  be the set of  K  users \quotes{similar} to user  $a$ , and let $sim(a,b)$ be a similarity measure between users  $a$  and  $b \in KNN(a)$. The  K -Nearest Neighbor method predicts a ranking  $Y_{ai}$  to be :
 
 \begin{align*}
 \widehat{Y}_{ai} = \displaystyle \frac{\displaystyle \sum _{b \in \text {KNN}(a)} \text {sim}(a,b) Y_{bi}}{\displaystyle \sum _{b \in \text {KNN}(a)} \text {sim}(a,b)}.
@@ -16,13 +17,16 @@ The similarity measure  $sim(a,b)$  could be any distance function between the f
 
 \subsection{Collaborative Filtering}
 
-Matrix $Y$ with $n$ rows (users) and $m$ columns (Movies) is sparse (entries missing), $(a,i)$th  entry  $Y_ai$  is the rating by user  $a$  of movie  $i$ if this rating has already been given, and blank if not. Goal is to predict matrix $X$ with no missing entries.
+Matrix $Y$ with $n$ rows (users) and $m$ columns (Movies) is sparse (entries missing), $(a,i)$th  entry  $Y_{ai}$  is the rating by user  $a$  of movie  $i$ if this rating has already been given, and blank if not. Goal is to predict matrix $X$ with no missing entries.
 
-Let $D$  be the set of all $(a,i)$ 's for which a user rating  $Y_ai$  exists, i.e. $(a,i) \in D$ if and only if the rating of user  $a$  to movie  $i$  exists.
+Let $D$  be the set of all $(a,i)$ 's for which a user rating  $Y_{ai}$  exists, i.e. $(a,i) \in D$ if and only if the rating of user  $a$  to movie  $i$  exists.
 
 
 \begin{align*}
-\displaystyle J &= \sum _{(a,i) \in D} \frac{(Y_{ai} - \big [UV^ T\big ]_{ai})^2}{2} + \frac{\lambda }{2} \left(\sum _{a,k} U_{ak}^2 + \sum _{i,k} V_{ik}^2\right)\\
+\begin{split}
+\displaystyle J &= \sum _{(a,i) \in D} \frac{(Y_{ai} - \big [UV^ T\big ]_{ai})^2}{2} + \\
+& \frac{\lambda }{2} \left(\sum _{a,k} U_{ak}^2 + \sum _{i,k} V_{ik}^2\right)
+\end{split} \\
 u&=
 \begin{bmatrix}
 u_1\\
@@ -34,6 +38,7 @@ v_1\\
 v_2\\
 v_3
 \end{bmatrix}\\
+\textbf{Example:}\\
 v&=
 \begin{bmatrix}
 2\\
@@ -41,15 +46,15 @@ v&=
 8
 \end{bmatrix}\\
 uv^T& = \begin{bmatrix}
-2u_1 7u_1 8_u1\\
-2u_2 7_u1 8_u2
+2u_1 & 7u_1 & 8u_1\\
+2u_2 & 7u_2 & 8u_2
 \end{bmatrix}\\
 \end{align*}
 
 Take derivative of Objective function $J$ with respect to every user, set it to zero and find respective $u_i$ value:
 
 \begin{align*}
-\frac{d}{du_1}( \frac{(7-8u_1)^2}{2} + \frac{\lambda}{2} u^2) = 0\\
+\frac{d}{du_1}(J)=\frac{d}{du_1}( \frac{(7-8u_1)^2}{2} + \frac{\lambda}{2} u_1^2) = 0\\
 \frac{d}{du_2}(J) = 0\\
 u_1 = \frac{66}{\lambda + 68};
 u_2 = \frac{16}{\lambda +53}

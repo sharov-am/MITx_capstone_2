@@ -155,6 +155,9 @@ Loss_h(z) &=
 
 \textbf{Regularization} means pushing out the margin boundaries by adding $max(\frac{1}{\mid \mid \theta \mid \mid })$ or $min(\frac{1}{2}\mid \mid \theta \mid \mid^2)$ to the objective function.
 
+Alternatively, the sum of the hinge losses can be calculated by
+$\sum _{i=1}^{n} \max \{ 0, 1 - y^{(i)} (\theta \cdot x^{(i)} + \theta _0)\}$
+
 \textbf{Objective Function}
 
 Objective function = average loss + regularization\\

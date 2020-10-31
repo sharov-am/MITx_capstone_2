@@ -16,7 +16,7 @@ Cosine similarity: $cos(x^{(i)},x^{(j)}) = \frac{x^{(i)} \cdot x^{(j)}}{||x^{(i)
 
 Euclidean square distance: $dist(x^{(i)},x^{(j)})= ||x^{(i)}-x^{(j)}||^2$. Will react to length.\\
 
-$cost(C_1,\cdots,C_k; Z^{(1)},\cdots,Z^{(1)}) = \sum_{j=1}^k \sum_{c \in C_j} ||x^{(i)}-z^{(j)}||^2 $
+$cost(C_1,\cdots,C_k; z^{(1)},\cdots,z^{(k)}) = \sum_{j=1}^k \sum_{c \in C_j} ||x^{(i)}-z^{(j)}||^2 $
 
 \subsection{The K-Means Algorithm}
 
@@ -37,6 +37,7 @@ Given a set of feature vectors $S_ n = \big \{ x^{(i)}| i = 1,...,n\big \}$ and 
 The best representative is found by optimization (gradient with respect to $z^{(j)}$, setting to zero and solving for $z^{(j)}$). It is the centroid of the cluster: $z^{(j)}=\displaystyle \frac{\sum _{i \in C_ j} x^{(i)}}{|C_ j|}$\\
 
 The clustering output that the K-Means algorithm converges to depends on the intialization.
+In KM the fact that the z's are actually not guaranteed to be the members of the original set of points x
 
 \subsection{K-Medoids Algorithm}
 
@@ -50,3 +51,10 @@ Finds the cost-minimizing representatives  $z_1,\cdots,z_K$ for any distance mea
 \item Given $C_ j \in \big \{ C_1,...,C_ K\big \}$ find the best representative $z_ j \in \big \{ x_1,...,x_ n\big \}$ such that $\sum _{x^{(i)} \in C_ j} \text {dist}(x^{(i)}, z_ j)$ is minimal
 \end{enumerate}
 \end{enumerate}
+
+\subsection{some useful notes:}
+measure of the cluster heterogeneity: cluster diameter (the distance
+between the most extreme feature vectors, i.e. the outliers),the average distance,
+ the sum of the distances between every member and  $z_j$, the
+representative vector of cluster $C_j$.
+
